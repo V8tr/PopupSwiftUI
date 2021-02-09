@@ -33,9 +33,6 @@ struct Popup<T: View>: ViewModifier {
                     .onGlobalFrameChange { popupFrame = $0 }
                     .transition(.offset(.init(width: 0, height: direction.offset(popupFrame: popupFrame))))
                     .animation(.spring())
-
-            } else {
-                EmptyView()
             }
         }
     }
