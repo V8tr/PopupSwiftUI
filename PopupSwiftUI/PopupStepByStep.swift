@@ -21,10 +21,12 @@ struct Popup1<T: View>: ViewModifier {
             .overlay(popupContent())
     }
 
+    @ViewBuilder
     private func popupContent() -> some View {
-        Group {
+        GeometryReader { geometry in
             if isPresented {
                 popup
+                    .frame(width: geometry.size.width, height: geometry.size.height)
             }
         }
     }
@@ -52,13 +54,16 @@ struct Popup2<T: View>: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .overlay(popupContent(), alignment: alignment)
+            .overlay(popupContent())
     }
 
+    @ViewBuilder
     private func popupContent() -> some View {
-        Group {
+        GeometryReader { geometry in
             if isPresented {
                 popup
+                    .animation(.spring())
+                    .frame(width: geometry.size.width, height: geometry.size.height, alignment: alignment)
             }
         }
     }
@@ -90,11 +95,6 @@ struct Popup3<T: View>: ViewModifier {
     let popup: T
     let alignment: Alignment
     let isPresented: Bool
-    @State private var popupFrame = CGRect.zero
-
-    private var belowScreenEdge: CGFloat {
-        UIScreen.main.bounds.height - popupFrame.minY
-    }
 
     init(isPresented: Bool, alignment: Alignment, @ViewBuilder content: () -> T) {
         self.isPresented = isPresented
@@ -104,18 +104,25 @@ struct Popup3<T: View>: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .overlay(popupContent(), alignment: alignment)
+            .overlay(popupContent())
     }
 
+    @ViewBuilder
     private func popupContent() -> some View {
-        Group {
+        GeometryReader { geometry in
             if isPresented {
                 popup
-                    .onGlobalFrameChange { popupFrame = $0 }
                     .animation(.spring())
-                    .transition(.offset(.init(width: 0, height: belowScreenEdge)))
+                    .transition(.offset(x: 0, y: geometry.belowScreenEdge))
+                    .frame(width: geometry.size.width, height: geometry.size.height, alignment: alignment)
             }
         }
+    }
+}
+
+private extension GeometryProxy {
+    var belowScreenEdge: CGFloat {
+        UIScreen.main.bounds.height - frame(in: .global).minY
     }
 }
 
@@ -164,8 +171,6 @@ struct Popup3_Previews: PreviewProvider {
             .previewDevice("iPod touch")
     }
 }
-
-
 
 struct Popup4_Previews: PreviewProvider {
 
