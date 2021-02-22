@@ -12,7 +12,6 @@ struct Popup<T: View>: ViewModifier {
     let alignment: Alignment
     let direction: Direction
     let isPresented: Bool
-    @State private var popupFrame = CGRect.zero
 
     init(isPresented: Bool, alignment: Alignment, direction: Direction, @ViewBuilder content: () -> T) {
         self.isPresented = isPresented
@@ -44,7 +43,6 @@ extension Popup {
         case top, bottom
 
         func offset(popupFrame: CGRect) -> CGFloat {
-            print(self, popupFrame)
             switch self {
             case .top:
                 let aboveScreenEdge = -popupFrame.maxY
