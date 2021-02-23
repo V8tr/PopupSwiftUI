@@ -60,7 +60,7 @@ extension View {
         isPresented: Bool,
         alignment: Alignment = .center,
         direction: Popup<T>.Direction = .bottom,
-        content: () -> T
+        @ViewBuilder content: () -> T
     ) -> some View {
         return modifier(Popup(isPresented: isPresented, alignment: alignment, direction: direction, content: content))
     }
