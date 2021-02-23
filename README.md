@@ -11,35 +11,22 @@ The project demonstrates how to implement a custom popup in SwiftUI.
 Usage:
 
 ```swift
-struct Popup3_Previews: PreviewProvider {
-
+struct Popup_Previews: PreviewProvider {
     static var previews: some View {
-        Preview()
-            .previewDevice("iPod touch")
-    }
-
-    // Helper view that shows a popup
-    struct Preview: View {
-        @State var isPresented = false
-
-        var body: some View {
-            ZStack {
-                Color.clear
-                VStack {
-                    Button("Toggle", action: { isPresented.toggle() })
-                    Spacer()
-                }
-            }
-            .modifier(Popup(isPresented: isPresented, // <--- Add the popup view modifier
-                            alignment: .center,
+        Color.clear
+            .modifier(Popup(isPresented: true, // <--- Add the popup view modifier
                             content: { Color.yellow.frame(width: 100, height: 100) }))
-        }
+            .previewDevice("iPod touch")
     }
 }
 ```
 
 Result:
 
+| Loading Indicator | Snackbar Message |
+|---|---|
+| <img src="https://github.com/V8tr/PopupSwiftUI/raw/main/demo-2.gif" alt="How to show a popup in SwiftUI"/> | <img src="https://github.com/V8tr/PopupSwiftUI/raw/main/demo-3.gif" alt="How to show a popup in SwiftUI"/> |
+
 <p align="center">
-  <img src="https://github.com/V8tr/PopupSwiftUI/raw/main/demo-1.gif" alt="How to show a popup in SwiftUI"/>
+  <img src="https://github.com/V8tr/PopupSwiftUI/raw/main/demo-2.gif" alt="How to show a popup in SwiftUI"/>
 </p>
