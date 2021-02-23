@@ -41,5 +41,5 @@ struct Popup3_Previews: PreviewProvider {
 Result:
 
 <p align="center">
-  <img src="https://github.com/V8tr/PopupSwiftUI/blob/master/demo-1.gif" alt="How to show a popup in SwiftUI"/>
+  <img src="https://github.com/V8tr/PopupSwiftUI/raw/main/demo-1.gif" alt="How to show a popup in SwiftUI"/>
 </p>
