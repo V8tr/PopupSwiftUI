@@ -26,7 +26,3 @@ Result:
 | Loading Indicator | Snackbar Message |
 |---|---|
 | <img src="https://github.com/V8tr/PopupSwiftUI/raw/main/demo-2.gif" alt="How to show a popup in SwiftUI"/> | <img src="https://github.com/V8tr/PopupSwiftUI/raw/main/demo-3.gif" alt="How to show a popup in SwiftUI"/> |
-
-<p align="center">
-  <img src="https://github.com/V8tr/PopupSwiftUI/raw/main/demo-2.gif" alt="How to show a popup in SwiftUI"/>
-</p>
